@@ -1,4 +1,4 @@
-FROM node:lates
+FROM node:latest
 
 RUN git clone https://github.com/DanielKabat97/node-red_fork
 
