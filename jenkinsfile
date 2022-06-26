@@ -1,0 +1,21 @@
+pipeline {
+
+	agent any
+
+	stages {
+		stage("BUILD") {
+			steps {
+				echo "build stage"
+				sh 'docker build . -f build.dockerfile -t nrbuild
+			}
+		}
+		
+		stage("TEST") {
+			steps {
+				echo "test stage"
+				sh 'docker build . -f test.dockerfile -t nrtest
+			}
+		}
+	}
+}
+	
