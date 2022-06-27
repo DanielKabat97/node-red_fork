@@ -24,9 +24,7 @@ pipeline {
 				sh 'docker rm -f nrdeploy || true'
 				sh 'docker run -dit --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node'
 				sh 'docker container exec nrdeploy bash -c "chmod 777 nodered"'
-				sh 'docker container exec nrdeploy bash -c "cd nodered"'
-				sh 'docker container exec nrdeploy bash -c "ls -l"'
-				sh 'docker container exec nrdeploy bash -c "npm start"'
+				sh 'docker container exec nrdeploy bash -c "cd nodered && npm start"'
 			}
 		}
 	}
