@@ -18,6 +18,13 @@ pipeline {
 				sh 'docker build . -f test.dockerfile -t nrtest'
 			}
 		}
+		stage("DEPLOY") {
+			steps {
+				echo "deploy stage"
+				sh 'docker run -dit --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node'
+				sh 'docker conatainer exec nrdeploy bash -c "ls -l"'
+			}
+		}
 	}
 }
 	
