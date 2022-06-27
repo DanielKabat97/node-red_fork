@@ -22,7 +22,7 @@ pipeline {
 			steps {
 				echo "deploy stage"
 				sh 'docker run -dit --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node'
-				sh 'docker conatainer exec nrdeploy bash -c "ls -l"'
+				sh 'docker container exec nrdeploy bash -c "ls -l"'
 			}
 		}
 	}
