@@ -1,5 +1,10 @@
 pipeline {
 
+	parameters {
+	string(name: 'version')
+	string(name: 'appName')
+	}
+	
 	agent any
 
 	stages {
@@ -29,5 +34,14 @@ pipeline {
 			}
 		}
 	}
+	
+	post {
+		success {
+			echo "PIPELINE SUCCEED"
+			}
+		failure {
+			echo "PIPELINE FAILURE"
+			}
+		}
 }
 	
