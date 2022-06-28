@@ -23,8 +23,9 @@ pipeline {
 				echo "deploy stage"
 				sh 'docker rm -f nrdeploy || true'
 				sh 'docker run -dit --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node'
-				sh 'docker container exec nrdeploy bash -c "chmod 777 nodered"'
-				sh 'docker container exec nrdeploy bash -c "cd /nodered/ && npm start"'
+				
+				sh 'docker container exec nrdeploy bash -c "ls -l"'
+				sh'exit $(docker inspect nrdeploy --format="{{.State.ExitCode}}}")'
 			}
 		}
 	}
