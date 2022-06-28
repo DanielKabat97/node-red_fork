@@ -1,12 +1,12 @@
 pipeline {
 
+	agent any
+
 	parameters {
 	string(name: 'version')
 	string(name: 'appName')
 	}
 	
-	agent any
-
 	stages {
 		stage("BUILD") {
 			steps {
