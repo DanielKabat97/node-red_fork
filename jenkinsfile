@@ -25,7 +25,7 @@ pipeline {
 				sh 'docker run -dit --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node'
 				
 				sh 'docker container exec nrdeploy bash -c "ls -l"'
-				sh'exit $(docker inspect nrdeploy --format="{{.State.ExitCode}}}")'
+				sh 'exit $(docker inspect nrdeploy --format="{{.State.ExitCode}}")'
 			}
 		}
 	}
