@@ -41,5 +41,9 @@ pipeline {
 			echo "PIPELINE FAILURE"
 			}
 		}
+	
+	parameters {
+			booleanParam(name: "PUBLISH", defaultValue: false)
+			}
 }
 	
