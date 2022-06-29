@@ -3,8 +3,8 @@ pipeline {
 	agent any
 
 	parameters {
-	string(name: 'version')
-	string(name: 'appName')
+	string(name: 'VERSION')
+	string(name: 'NAME')
 	booleanParam(name: "PUBLISH", defaultValue: false)
 	}
 	
@@ -14,7 +14,7 @@ pipeline {
 				echo "build stage"
 				sh 'docker build . -f build.dockerfile -t nrbuild'
 				sh 'docker volume create nrVolOut'
-				sh 'docker run --mount type=volume,src="nrVolOut",dst=/nodered nrbuild:latest bash -c "ls -l && cd .. && cp -r /node-red_fork /nodered"'
+				sh 'docker run --mount type=volume,src="nrVolOut",dst=/nodered nrbuild:latest bash -c "cd .. && cp -r /node-red_fork /nodered"'
 			}
 		}
 		
@@ -33,7 +33,17 @@ pipeline {
 			}
 		}
 	}
-	
+		
+	stage("PUBLISH") {
+		steps {
+			script {
+				if(params.PUBLISH) {
+				sh "ls -l"
+					}
+				}
+			}
+		}
+		
 	post {
 		success {
 			echo "PIPELINE SUCCEED"
@@ -42,6 +52,5 @@ pipeline {
 			echo "PIPELINE FAILURE"
 			}
 		}
-	
 }
 	
