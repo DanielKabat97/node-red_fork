@@ -39,7 +39,10 @@ pipeline {
 				sh "rm -r nodered || mkdir nodered"
 				sh 'docker rm -f nrpublish || true'
 				sh 'docker run --name nrpublish nrbuild:latest'
-				sh"docker cp -r nrpublish:/node-red_fork/ ./nodered"
+				sh"docker cp nrpublish:/node-red_fork ./nodered"
+				sh"tar -zcvf nr_${params.NAME}_${params.VERSION}.tar.xz nodered/node-red_fork"
+				sh "rm -r nodered"
+				archiveArtifacts artifacts: "nr_${params.NAME}_${params.VERSION}.tar.xz"
 					}
 				}
 			}
