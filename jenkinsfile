@@ -36,9 +36,9 @@ pipeline {
 		steps {
 			script {
 				if(params.PUBLISH) {
-				sh "mkdir nodered"
+				sh "rm nodered && mkdir nodered"
 				sh 'docker run --name nrpublish nrbuild:latest'
-				sh"docker cp nrpublish:/node-red_fork ./nodered"
+				sh"docker cp nrpublish:/node-red_fork/ ./nodered"
 					}
 				}
 			}
