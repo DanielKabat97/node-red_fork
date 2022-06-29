@@ -29,7 +29,7 @@ pipeline {
 				sh 'docker rm -f nrdeploy || true'
 				sh 'docker run -dit --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node'
 				
-				sh 'docker container exec nrdeploy bash -c "cd nodered && cd node-red_fork && npm start && exit"'
+				sh 'docker container exec nrdeploy bash -c "cd nodered && cd node-red_fork && npm start && sleep 10 && kill -9"'
 				sh 'exit $(docker inspect nrdeploy --format="{{.State.ExitCode}}")'
 			}
 		}
