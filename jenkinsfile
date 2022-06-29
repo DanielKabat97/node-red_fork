@@ -5,6 +5,7 @@ pipeline {
 	parameters {
 	string(name: 'version')
 	string(name: 'appName')
+	booleanParam(name: "PUBLISH", defaultValue: false)
 	}
 	
 	stages {
@@ -42,8 +43,5 @@ pipeline {
 			}
 		}
 	
-	parameters {
-			booleanParam(name: "PUBLISH", defaultValue: false)
-			}
 }
 	
