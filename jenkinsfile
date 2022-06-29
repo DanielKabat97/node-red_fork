@@ -29,14 +29,14 @@ pipeline {
 				echo "deploy stage"
 				sh 'docker rm -f nrdeploy || true'
 				sh 'docker run --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node bash -c "cd nodered && cd node-red_fork && npm run"'
-				sh 'sleep 10; exit $(docker inspect nrdeploy --format="{{.State.ExitCode}}")'
+				sh 'exit $(docker inspect nrdeploy --format="{{.State.ExitCode}}")'
 			}
 		}	
 	stage("PUBLISH") {
 		steps {
 			script {
 				if(params.PUBLISH) {
-				sh "ls -l"
+				sh "cd.. && ls -l"
 					}
 				}
 			}
