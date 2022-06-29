@@ -27,7 +27,7 @@ pipeline {
 			steps {
 				echo "deploy stage"
 				sh 'docker rm -f nrdeploy || true'
-				sh 'docker run --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node bash -c "cd nodered && cd node-red_fork && npm start"'
+				sh 'docker run --name nrdeploy --mount type=volume,src="nrVolOut",dst=/nodered node bash -c "cd nodered && cd node-red_fork && npm run"'
 				sh 'sleep 10; exit $(docker inspect nrdeploy --format="{{.State.ExitCode}}")'
 			}
 		}
